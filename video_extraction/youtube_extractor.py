@@ -3,8 +3,6 @@ from cv2 import threshold
 import pafy
 
 import numpy as np
-import argparse
-import imutils
 import time
 import cv2
 import os
@@ -49,14 +47,6 @@ if __name__ == "__main__":
     net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
     ln = net.getLayerNames()
     ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
-
-    # initialize the video stream, pointer to output video file, and
-    # frame dimensions
-
-    # if args['input']== str(0):
-    #     vs= cv2.VideoCapture(0)
-    # else:
-    #     vs=cv2.VideoCapture(args['input'])
 
     writer = None
     (W, H) = (None, None)

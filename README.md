@@ -7,7 +7,7 @@ This package contains the following two modules that can be utilized separately 
  
 ### Clone this repository 
 ```
-$ git clone repository_name
+$ git clone https://github.com/MichaelMarav/YoutubeRealTimeYOLO.git
 ```
 
 # 1. Real-time youtube video extraction
