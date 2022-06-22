@@ -8,6 +8,12 @@ import cv2
 import os
 
 
+# Params 
+url =  "https://www.youtube.com/watch?v=bhWdPoWJzCE" # Youtube url
+abs_path_labels  = "/home/michael/YoutubeRealTimeYOLO/darknet/data/coco.names"
+abs_path_weights = "/home/michael/YoutubeRealTimeYOLO/darknet/weights/yolov3.weights"
+abs_path_config  = "/home/michael/YoutubeRealTimeYOLO/darknet/cfg/yolov3.cfg"
+
 
 
 # YOLO 
@@ -29,7 +35,7 @@ if __name__ == "__main__":
 
 
     # load the COCO class labels our YOLO model was trained on
-    labelsPath = os.path.sep.join(["/home/michael/YoutubeRealTimeYOLO/darknet/data/coco.names"])
+    labelsPath = os.path.sep.join([abs_path_labels])
     LABELS = open(labelsPath).read().strip().split("\n")
 
     # initialize a list of colors to represent each possible class label
@@ -38,12 +44,13 @@ if __name__ == "__main__":
         dtype="uint8")
 
     # derive the paths to the YOLO weights and model configuration
-    weightsPath = os.path.sep.join(["/home/michael/YoutubeRealTimeYOLO/darknet/weights/yolov3.weights"])
-    configPath  = os.path.sep.join(["/home/michael/YoutubeRealTimeYOLO/darknet/cfg/yolov3.cfg"])
-
+    weightsPath = os.path.sep.join([abs_path_weights])
+    print("[INFO] Found weights")
+    configPath  = os.path.sep.join([abs_path_config])
+    print("[INFO] Found configuration file")
     # load our YOLO object detector trained on COCO dataset (80 classes)
     # and determine only the *output* layer names that we need from YOLO
-    print("[INFO] loading YOLO from disk...")
+    print("[INFO] Loading YOLO")
     net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
     ln = net.getLayerNames()
     ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
@@ -53,7 +60,6 @@ if __name__ == "__main__":
 
 
     # ------------------------------------ 
-    url = "https://www.youtube.com/watch?v=bhWdPoWJzCE"
     v = pafy.new(url)
 
     best = v.getbest(preftype="any")
@@ -154,47 +160,3 @@ if __name__ == "__main__":
     cap.release()
 
     cv2.destroyAllWindows()
-
-    # --------------------------------------------------------------------------------------------------------------
-    # url = "https://www.youtube.com/watch?v=bhWdPoWJzCE"
-    # v = pafy.new(url)
-
-    # best = v.getbest(preftype="any")
-
-
-
-    # # print(v.title)
-    # # print(v.duration)
-    # # print(v.author)
-    # # print(v.length)
-    # # print(v.thumb)
-    # # print(v.videoid)
-    # # print(v.viewcount)
-
-
-
-    # cap = cv2.VideoCapture(best.url)
-    # if (cap.isOpened()==False):
-    #     print("Could not open the video")
-
-    # while (cap.isOpened()):
-
-    #     ret, frame = cap.read()
-
-    #     if ret == True:
-    #         cv2.imshow("Frame",frame)
-
-        
-    #         if cv2.waitKey(50) & 0xFF == ord('q'):
-    #             break
-    #     else:
-    #         break
-
-    # # ADD YOLO STUFF HERE
-
-
-    # cap.release()
-
-    # cv2.destroyAllWindows()
-
-
