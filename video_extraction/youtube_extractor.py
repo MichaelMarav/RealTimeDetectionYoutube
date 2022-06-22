@@ -67,14 +67,16 @@ if __name__ == "__main__":
 
     cap = cv2.VideoCapture(best.url)
     if (cap.isOpened()==False):
-        print("Could not open the video")
-
+        print("[ERROR] Could not load video")
+        
 
     # loop over frames from the video file stream
     while cap.isOpened():
         # read the next frame from the file
         ret, frame = cap.read()
-        
+        cv2.imshow("Frame 1",frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):# Press 'ESC' for exiting video
+            break 
         # if the frame was not grabbed, then we have reached the end
         # of the stream
         if not ret:
@@ -93,7 +95,7 @@ if __name__ == "__main__":
         start = time.time()
         layerOutputs = net.forward(ln)
         end = time.time()
-
+    
         # initialize our lists of detected bounding boxes, confidences,
         # and class IDs, respectively
         boxes = []

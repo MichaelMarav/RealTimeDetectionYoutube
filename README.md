@@ -55,5 +55,6 @@ $ mkdir weights/ && cd weights/
 $ wget https://pjreddie.com/media/files/yolov3.weights
 ```
 
-
+### Change parameters
+Change the parameters located at ???. to the absolute path for the weights you downloaded and the config and the coco. names
 
