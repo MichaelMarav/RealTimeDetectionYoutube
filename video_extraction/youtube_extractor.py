@@ -55,8 +55,6 @@ if __name__ == "__main__":
     ln = net.getLayerNames()
     ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
-    writer = None
-    (W, H) = (None, None)
 
 
     # ------------------------------------ 
@@ -64,27 +62,33 @@ if __name__ == "__main__":
 
     best = v.getbest(preftype="any")
 
-
+    
     cap = cv2.VideoCapture(best.url)
     if (cap.isOpened()==False):
         print("[ERROR] Could not load video")
-        
+    else:
+        # Set height & width of video
+        ret, frame = cap.read()
+        (H,W) = frame.shape[:2]
+        fps = cap.get(5)
+
+        print('Frames per second : ', fps,'FPS')
+
+
+
+
 
     # loop over frames from the video file stream
     while cap.isOpened():
         # read the next frame from the file
         ret, frame = cap.read()
-        cv2.imshow("Frame 1",frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):# Press 'ESC' for exiting video
-            break 
-        # if the frame was not grabbed, then we have reached the end
-        # of the stream
-        if not ret:
-            break
 
-        # if the frame dimensions are empty, grab them
-        if W is None or H is None:
-            (H, W) = frame.shape[:2]
+        # Check if frame is grabbed
+        if not ret:
+            print("[WARNING] Frame is lost")
+            continue
+
+
 
         # construct a blob from the input frame and then perform a forward
         # pass of the YOLO object detector, giving us our bounding boxes
@@ -155,6 +159,7 @@ if __name__ == "__main__":
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
         cv2.imshow('outputWindows',frame)
+
         if cv2.waitKey(1) & 0xFF == ord('q'):# Press 'ESC' for exiting video
             break 
 
