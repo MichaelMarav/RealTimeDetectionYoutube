@@ -41,6 +41,17 @@ Because youtube has removed the dislike count, you will get an error later on, w
 #self._dislikes = self._ydl_info['dislike_count']
 ```
 
+If you want to change the video/stream quality that you
+
+Because of the .getbest method, you are only able to get the highest quality. To change that go to 
+
+/home/michael/.local/lib/python3.6/site-packages/pafy/backend_shared.py
+
+line 359 and change the r = max(streams, key = _sortkey)
+```
+r = streams[i], where each i=0,...,size(streams) is a different quality with streams[-1] being the max possible quality
+```
+
 # 2. Object detection and tracking
 
 
@@ -58,3 +69,8 @@ $ wget https://pjreddie.com/media/files/yolov3.weights
 ### Change parameters
 Change the parameters located at ???. to the absolute path for the weights you downloaded and the config and the coco. names
 
+
+
+# 3. Run it on GPU 
+
+Requirements (OpenCV > 4.2)

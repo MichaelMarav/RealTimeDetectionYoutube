@@ -34,6 +34,11 @@ if __name__ == "__main__":
     non_max_thres    = 0.3
 
 
+ 
+
+
+   
+    
     # load the COCO class labels our YOLO model was trained on
     labelsPath = os.path.sep.join([abs_path_labels])
     LABELS = open(labelsPath).read().strip().split("\n")
@@ -52,18 +57,23 @@ if __name__ == "__main__":
     # and determine only the *output* layer names that we need from YOLO
     print("[INFO] Loading YOLO")
     net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
+    
+    net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+    net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+    
     ln = net.getLayerNames()
     ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
+    
 
 
-
-    # ------------------------------------ 
+ 
     v = pafy.new(url)
 
     best = v.getbest(preftype="any")
 
-    
     cap = cv2.VideoCapture(best.url)
+
+
     if (cap.isOpened()==False):
         print("[ERROR] Could not load video")
     else:
@@ -76,13 +86,12 @@ if __name__ == "__main__":
 
 
 
-
-
     # loop over frames from the video file stream
     while cap.isOpened():
         # read the next frame from the file
         ret, frame = cap.read()
-
+        cap.set(cv2.CAP_PROP_BUFFERSIZE,1)
+        print(frame.shape)
         # Check if frame is grabbed
         if not ret:
             print("[WARNING] Frame is lost")
