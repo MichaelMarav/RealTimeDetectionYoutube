@@ -7,38 +7,18 @@ import time
 import cv2
 import os
 
-
 # Params 
 url =  "https://www.youtube.com/watch?v=bhWdPoWJzCE" # Youtube url
-abs_path_labels  = "/home/michael/YoutubeRealTimeYOLO/darknet/data/coco.names"
-abs_path_weights = "/home/michael/YoutubeRealTimeYOLO/darknet/weights/yolov3.weights"
-abs_path_config  = "/home/michael/YoutubeRealTimeYOLO/darknet/cfg/yolov3.cfg"
-
+abs_path_labels  = "/home/<Yourname>/coco.names"
+abs_path_weights = "/home/<Yourname>/yolov3.weights"
+abs_path_config  = "/home/<Yourname>/YoutubeRealTimeYOLO/darknet/cfg/yolov3.cfg"
+confidence_thres = 0.5
+non_max_thres    = 0.3
 
 
 # YOLO 
 if __name__ == "__main__":
-    # construct the argument parse and parse the arguments
-    # ap = argparse.ArgumentParser()
-    # ap.add_argument("-i", "--input", required=True,
-    #     help="path to input video")
-    # ap.add_argument("-c", "--confidence", type=float, default=0.5,
-    #     help="minimum probability to filter weak detections")
-    # ap.add_argument("-t", "--threshold", type=float, default=0.3,
-    #     help="threshold when applying non-maxima suppression")
-    # args = vars(ap.parse_args())
-    
 
-    # Parameters 
-    confidence_thres = 0.5
-    non_max_thres    = 0.3
-
-
- 
-
-
-   
-    
     # load the COCO class labels our YOLO model was trained on
     labelsPath = os.path.sep.join([abs_path_labels])
     LABELS = open(labelsPath).read().strip().split("\n")

@@ -1,4 +1,4 @@
-# Real-time youtube video extraction and object detection/tracking 
+# Real-time youtube video stream extraction and object detection 
 
 This package contains the following two modules that can be utilized separately or combined.
 1) Video extraction from youtube to OpenCV frames (works for live youtube live streams too)
