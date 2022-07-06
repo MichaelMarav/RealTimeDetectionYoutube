@@ -48,6 +48,11 @@ r = streams[i]
 ```
 Choose a value for *i = 0,...,size(streams)* is a different quality with streams[-1] being the max possible quality and streams[0] the lowest.
 
+
+# Setup SSD detection
+
+
+
 # Setup YOLO detection
 
 ### Download YOLO weights
@@ -71,11 +76,20 @@ Ready to go! Run the detection algorithm:
 ```
 $ pythonX.X YOLO_Youtube.py
 ```
+
+
 # 3. Run it on GPU 
 
 Requirements (OpenCV > 4.2)
 
+You will need an Nvidia GPU. Setup CUDA, CUDA-toolkit and install opencv and opencv_contrib from source. Follow this tutorial:
+https://pyimagesearch.com/2020/02/03/how-to-use-opencvs-dnn-module-with-nvidia-gpus-cuda-and-cudnn/
 
+After you've installed all of the above, to enable the network to run with GPU you will need to set:
+```python
+net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+```
 ### Clone this repository 
 ```
 $ git clone https://github.com/MichaelMarav/YoutubeRealTimeYOLO.git
