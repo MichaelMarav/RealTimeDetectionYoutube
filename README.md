@@ -51,26 +51,44 @@ Choose a value for *i = 0,...,size(streams)* is a different quality with streams
 
 # Setup SSD detection
 
+### Download *MobileNetSSD_deploy.caffemodel*
+https://github.com/PINTO0309/MobileNet-SSD-RealSense/blob/master/caffemodel/MobileNetSSD/MobileNetSSD_deploy.caffemodel
 
 
+### Download *MobileNetSSD_deploy.prototxt*
+
+https://github.com/chuanqi305/MobileNet-SSD/blob/master/voc/MobileNetSSD_deploy.prototxt
+
+### Change the parameters
+Open *SSD_Youtube.py* and change the following parameters
+
+1. url : The url you wish to subscribe from Youtube
+2. PROTOTXT = <path-to-MobileNetSSD_deploy.prototxt>
+3. MODEL = <path-to-MobileNetSSD_deploy.caffemodel>
+
+Ready to go! Run:
+```python
+pythonX.X SSD_Youtube.py
+```
 # Setup YOLO detection
 
-### Download YOLO weights
+### Download *YOLO weights*
 ``` 
 $ wget https://pjreddie.com/media/files/yolov3.weights
 ```
 
-### Download coco.names:
+### Download *coco.names*:
 https://github.com/pjreddie/darknet/blob/master/data/coco.names
 
-### Download yolov3.cfg
+### Download *yolov3.cfg*
 https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg
 
 ### Change the parameters 
-*url* : The url you wish to subscribe from Youtube \
-*abs_path_labels* : The absolute path for *coco.names* \
-*abs_path_weights* : The absolute path for *yolov3.weights*\
-*abs_path_config* : The absolute path for *yolov3.cfg*
+Open *YOLO_Youtube.py* and change the following parameters: 
+1. *url* : The url you wish to subscribe from Youtube 
+2. *abs_path_labels* : The absolute path for *coco.names* 
+3. *abs_path_weights* : The absolute path for *yolov3.weights*
+4. *abs_path_config* : The absolute path for *yolov3.cfg*
 
 Ready to go! Run the detection algorithm:
 ```
@@ -89,8 +107,4 @@ After you've installed all of the above, to enable the network to run with GPU y
 ```python
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
-```
-### Clone this repository 
-```
-$ git clone https://github.com/MichaelMarav/YoutubeRealTimeYOLO.git
 ```

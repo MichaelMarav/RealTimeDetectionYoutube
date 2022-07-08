@@ -4,24 +4,26 @@ import pafy
 import time
 
 
+# Params
+PROTOTXT = "MobileNetSSD_deploy.prototxt" # Specify path for .prototxt and .caffemodel
+MODEL = "MobileNetSSD_deploy.caffemodel"
+
 URL =  "https://youtu.be/APvT4qVKfRQ" # Youtube url
+
+CONF_THRES = 0.4 # Confidence threshold for making prediction
+
 
 CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus",  "car", 
             "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", 
             "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
 
+ENABLE_GPU = 0
+
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
-CONF_THRES = 0.4 # Confidence threshold for making prediction
 
 
 def load_model():
-
-    # Params
-    PROTOTXT = "MobileNetSSD_deploy.prototxt" # Specify path for .prototxt and .caffemodel
-    MODEL = "MobileNetSSD_deploy.caffemodel"
-    ENABLE_GPU = 0
-
 
     # Read model
     model = cv2.dnn.readNetFromCaffe(PROTOTXT, MODEL)
