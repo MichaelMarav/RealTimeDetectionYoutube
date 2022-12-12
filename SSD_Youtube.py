@@ -1,14 +1,15 @@
+#! /usr/bin/env python3
 import numpy as np
 import cv2
 import pafy
 import time
-
+import os
 
 # Params
-PROTOTXT = "MobileNetSSD_deploy.prototxt" # Specify path for .prototxt and .caffemodel
-MODEL = "MobileNetSSD_deploy.caffemodel"
-
-URL =  "https://youtu.be/APvT4qVKfRQ" # Youtube url
+RELATIVE_PATH = os.getcwd()
+PROTOTXT = RELATIVE_PATH + "/utilities/SSD_deploy.prototxt" # Specify path for .prototxt and .caffemodel
+MODEL = RELATIVE_PATH + "/utilities/SSD.caffemodel"
+URL =  "https://www.youtube.com/watch?v=cH7VBI4QQzA" # Youtube url
 
 CONF_THRES = 0.4 # Confidence threshold for making prediction
 
