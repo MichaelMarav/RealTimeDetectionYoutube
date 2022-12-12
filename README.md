@@ -39,7 +39,7 @@ Because youtube has removed the dislike count, you will get an error later on, w
 
 To subscribe to live-stream there is a method called **.getbest()** which grabs the highest possible quality of the stream. In case you want to increase performance you can go to 
 
-*/home/michael/.local/lib/python3.6/site-packages/pafy/backend_shared.py*
+*~/.local/lib/python3.6/site-packages/pafy/backend_shared.py*
 
 line 359 and change:
 ```python
@@ -67,8 +67,8 @@ Open *SSD_Youtube.py* and change the following parameters
 3. MODEL = <path-to-MobileNetSSD_deploy.caffemodel>
 
 Ready to go! Run:
-```python
-pythonX.X SSD_Youtube.py
+```
+$ pythonX.X SSD_Youtube.py
 ```
 # Setup YOLO detection
 
