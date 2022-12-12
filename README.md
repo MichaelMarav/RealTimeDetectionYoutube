@@ -32,8 +32,9 @@ $ pip install youtube-dl
 ```
 Because youtube has removed the dislike count, you will get an error later on, when the library tries to extract the dislike counts of the video. To fix this:
 1. Edit ~/.local/lib/pythonX.X/site-packages/pafy/backend_youtube_dl.py -> Replace X.X with your python version
-2. Comment out line 54:
+2. Comment out line 53 & 54:
 ```python
+#self._likes = self._ydl_info['like_count']
 #self._dislikes = self._ydl_info['dislike_count']
 ```
 
