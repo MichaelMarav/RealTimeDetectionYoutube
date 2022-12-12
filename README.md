@@ -1,5 +1,8 @@
 # Real-time youtube video stream extraction and object detection 
 
+Detection on youtube livestream walk in Tokyo, Japan.
+![Screenshot](.figures/tokyo1.png)
+
 This package contains two modules that perform real-time object detection from Youtube video stream. A possible use case is detection with a drone's camera since most of them support Youtube live-streaming (with some constant delay ~ 7secs). It can be also used with simple youtube videos just by providing the URL. 
 
 The *SSD_youtube.py* uses the Single Shot Detection which runs on CPU i5 8400, with ~ 30 hz. The *YOLO_Youtube.py*, uses the YOLO algorithm and runs on the same CPU with ~1-3 hz. If you want high quality results, setup CUDA, CUDA-toolkit and CUDNN for opencv and use the YOLO detection algorithm.   
@@ -52,25 +55,20 @@ Choose a value for *i = 0,...,size(streams)* is a different quality with streams
 
 # Setup SSD detection
 
-### Download *MobileNetSSD_deploy.caffemodel*
-https://github.com/PINTO0309/MobileNet-SSD-RealSense/blob/master/caffemodel/MobileNetSSD/MobileNetSSD_deploy.caffemodel
-
-
-### Download *MobileNetSSD_deploy.prototxt*
-
-https://github.com/chuanqi305/MobileNet-SSD/blob/master/voc/MobileNetSSD_deploy.prototxt
-
+### Clone repository
+```
+$ git clone https://github.com/MichaelMarav/RealTimeDetectionYoutube.git
+```
 ### Change the parameters
-Open *SSD_Youtube.py* and change the following parameters
-
-1. url : The url you wish to subscribe from Youtube
-2. PROTOTXT = <path-to-MobileNetSSD_deploy.prototxt>
-3. MODEL = <path-to-MobileNetSSD_deploy.caffemodel>
+Open *SSD_Youtube.py* and change the url parameter to: The url you wish to subscribe from Youtube
 
 Ready to go! Run:
 ```
 $ pythonX.X SSD_Youtube.py
 ```
+An opencv window should open and automatically starts detecting.
+![Screenshot](.figures/tokyo1.png)
+
 # Setup YOLO detection
 
 ### Download *YOLO weights*
