@@ -31,7 +31,7 @@ $ pip install pafy
 $ pip install youtube-dl
 ```
 Because youtube has removed the dislike count, you will get an error later on, when the library tries to extract the dislike counts of the video. To fix this:
-1. Edit ~/.local/lib/python3.6/site-packages/pafy/backend_youtube_dl.py
+1. Edit ~/.local/lib/pythonX.X/site-packages/pafy/backend_youtube_dl.py -> Replace X.X with your python version
 2. Comment out line 54:
 ```python
 #self._dislikes = self._ydl_info['dislike_count']
@@ -41,10 +41,10 @@ To subscribe to live-stream there is a method called **.getbest()** which grabs 
 
 *~/.local/lib/python3.6/site-packages/pafy/backend_shared.py*
 
-line 359 and change:
+line 358 and change:
 ```python
 # r = max(streams, key = _sortkey)
-r = streams[i]
+r = streams[-1]  # -1 is just the best possible quality
 ```
 Choose a value for *i = 0,...,size(streams)* is a different quality with streams[-1] being the max possible quality and streams[0] the lowest.
 
