@@ -67,7 +67,7 @@ Ready to go! Run:
 $ pythonX.X SSD_Youtube.py
 ```
 An opencv window should open and automatically starts detecting.
-![Screenshot](.figures/tokyo1.png)
+![Screenshot](.figures/tokyo2.png)
 
 # Setup YOLO detection
 
